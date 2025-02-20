@@ -1,7 +1,7 @@
 Package: parseLatex
 Type: Package
 Title: Parse 'LaTeX' Code
-Version: 0.2.1
+Version: 0.3.0
 Authors@R: c(
     person(
       "Duncan", "Murdoch",
@@ -24,9 +24,9 @@ Imports: utils
 RoxygenNote: 7.3.2
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2025-02-11 09:52:08 UTC; murdoch
+Packaged: 2025-02-20 15:30:01 UTC; murdoch
 Author: Duncan Murdoch [aut, cre],
   The R Core Team [ctb, cph]
 Maintainer: Duncan Murdoch <murdoch.duncan@gmail.com>
 Repository: CRAN
-Date/Publication: 2025-02-11 17:10:01 UTC
+Date/Publication: 2025-02-20 16:30:02 UTC

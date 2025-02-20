@@ -1,3 +1,21 @@
+# parseLatex 0.3.0
+
+* Added `stdbool.h` to the includes for compatibility with older
+`gcc`.  (Thanks to Dirk Eddelbuettel for the report and PR #2).
+* Added a configure script to check for bison (on Unix-alike only).
+* Adjacent math environments were treated as a syntax error.
+* `\let` is now handled the same way as `\def`:  the next two
+tokens are not considered for evaluation.
+* Added arguments `defcmd` and `defenv` to `parseLatex()` to
+allow the user to specify defining macros.  These names
+are also now allowed in the magic comments.
+* Spaces between a `verb` macro and its argument caused the parsing
+to be incorrect.
+* Added argument `recover` to `parseLatex()`, to attempt to recover
+after a parsing error.  This may help with diagnosing the error.
+The error will be wrapped in an `ERROR` tag which is displayed
+as `>>>text causing error<<<`.
+
 # parseLatex 0.2.1
 
 * Minor modifications for CRAN submission.

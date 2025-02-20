@@ -1,6 +1,6 @@
-9d356b187a08981c3b4978643d242efb *DESCRIPTION
+d4b4afdf73d5d5deca40fb6bfef6bb24 *DESCRIPTION
 0ea995865e76308c72f5a9d78ca9a191 *NAMESPACE
-5b2d4a283e7d944df411828fd219bd19 *NEWS.md
+ae104ab8000da5b540e6f2f912f2d9b8 *NEWS.md
 5e0656f042541960e5ba3ba5673abdd3 *R/as_LaTeX2.R
 157ea8e71aafb9bb1716fe16f827fc4c *R/catcodes.R
 2326de2fe03896b1ef9cdbe572cdc20d *R/find_sequence.R
@@ -8,7 +8,7 @@
 963d7b52877b994d9db231cc54defc10 *R/get_leftovers.R
 813502e9cf8f38eface6f70a249f19aa *R/names.R
 7e511cfbdd5842b68e125ea371d1da1c *R/options.R
-152834bdddde88760fa841c743586db0 *R/parseLatex.R
+623bc6137e34308509f8251a2a85a3bb *R/parseLatex.R
 ea61ac75ca5deaca2d68fef3ec8d30c9 *R/reduce_whitespace.R
 c60fdedcc9c9e1ff61e4821c708d3116 *R/tableContent.R
 dbebcbd01bf8cd0d2f4960af4e89c7be *R/tableOption.R
@@ -21,9 +21,11 @@ d536bcc3163873bf862fcfbc74de5dac *R/tests.R
 1e395a5810890c1d5fcd03b98842213b *R/utils.R
 0f334da4e7bc0be7f1685cc77a771a50 *README.md
 1def3451d1c5d43d9eb15291c9da20f6 *build/vignette.rds
-24eaf784e474f764e7e3e1781c93b16e *inst/doc/parseLatex.R
-cf11b75ad76f235867edcd800d207187 *inst/doc/parseLatex.Rmd
-d6855516b49c1c0c0efd7ca838203db5 *inst/doc/parseLatex.html
+ba3caf48933f8c648233c7cf67566f2f *cleanup
+a071b0a6e65ff1a32bb15bd137c9955c *configure
+2ff0f01b5780c50f229186d93317f0a1 *inst/doc/parseLatex.R
+c331e6d38567a8e86075b1ddac577c56 *inst/doc/parseLatex.Rmd
+00e64dabd126ade0f7ecf42a73114ea5 *inst/doc/parseLatex.html
 1a5e38d79ffea86f94c6881a537b9736 *man/LaTeX2range.Rd
 a8c25c8e28a489ab74f62ed99dd1213d *man/Utilities.Rd
 9600b720d87f0cfdf0c38db9514ac921 *man/as_LaTeX2.Rd
@@ -36,7 +38,7 @@ a12da798d802d6130b0e96c9c5af3868 *man/get_contents.Rd
 f1658692898c6895b49b2e6f9fc9919e *man/get_leftovers.Rd
 222b3bd588eb9d224c6e06b3a5db0bab *man/names.Rd
 ad43bd27e04641ae543989ffb5e9af93 *man/options.Rd
-cab46afb136208d971b81145cd13029e *man/parseLatex_fn.Rd
+49ed36d482f7347996aab48e4137b8bf *man/parseLatex_fn.Rd
 af55dfb48036a80cb25363665b5aa714 *man/parseLatex_pkg.Rd
 ac9d3c21f5bc2aee5c6ee2969d33a490 *man/path_to.Rd
 3d57476c358ef9d4796f0fb291bee850 *man/reduce_whitespace.Rd
@@ -51,9 +53,9 @@ f7fc4b8b73d84c8ada7c369a1a328cd0 *man/tables.Rd
 2e818f0bdd64ec729f29a89e5e97721c *man/tests.Rd
 8981a7bcdbee8a57001b5912345b2dba *man/vector_to_latex2.Rd
 95a350fda294bd0f8c37c3ceb0ffdac5 *man/vector_to_row.Rd
-189cb0db8e7e74f6c36976fa395d1133 *src/Makevars
-43999157a50561a8304a9a75c51f5baa *src/Makevars.ucrt
-88969533ff4908f7cf8fe760233f2858 *src/gramLatex.tab.c
-85208339ef9622a0ec26203df9a58136 *src/parser/gramLatex.y
-5992501e8331785f30f7d0cacdaef79b *tests/tools_bugs.R
-cf11b75ad76f235867edcd800d207187 *vignettes/parseLatex.Rmd
+4ff493de74c37cab6b1117baa5a8f238 *src/Makevars.in
+43999157a50561a8304a9a75c51f5baa *src/Makevars.win
+401f47427f1ccc517d013168bf0113fa *src/gramLatex.tab.c
+271c6c995fd1be7b6f4b94df61299de5 *src/parser/gramLatex.y
+e2178910b953adf10a6fb57a1eb40efb *tests/tools_bugs.R
+c331e6d38567a8e86075b1ddac577c56 *vignettes/parseLatex.Rmd

@@ -7,9 +7,15 @@
 #' @param text A character vector containing LaTeX source code.
 #' @param verbose If \code{TRUE}, print debug error messages.
 #' @param verbatim A character vector containing the names of \LaTeX environments holding verbatim text.
-#' @param verb A character vector containing LaTeX macros that should be assumed to hold verbatim text.
+#' @param verb A character vector containing LaTeX macros that
+#'  should be assumed to hold verbatim text.
+#' @param defcmd,defenv Character vectors of macros that
+#'  are assumed to define new macro commands or environments
+#'  respectively.
 #' @param catcodes A list or dataframe holding LaTeX "catcodes",
 #' such as [defaultCatcodes].
+#' @param recover If `TRUE`, convert errors to warnings and
+#' continue parsing.  See Details below.
 #'
 #' @details
 #' Some versions of LaTeX such as `pdflatex` only handle ASCII
@@ -41,6 +47,12 @@
 #'  character (catcode 15) if its code point is less than 32,
 #'  - as "other" (catcode 12) otherwise.
 #'
+#'  When `recover = TRUE`, the parser will mark each error
+#'  in the output, and attempt to continue parsing.  This
+#'  may lead to a cascade of errors, but will sometimes
+#'  help in locating the first error.  The section of text
+#'  related to the error will be marked as an item with
+#'  tag `ERROR`.
 #'
 #' @returns `parseLatex` returns parsed Latex in a list with class `"LaTeX2"`.  Items in the list have class `"LaTeX2item"`.
 #' @seealso LaTeX2, LaTeX2item
@@ -54,20 +66,33 @@ parseLatex <- function(text,
                        verbatim = c("verbatim", "verbatim*",
                         "Sinput", "Soutput"),
                        verb = "\\Sexpr",
-                       catcodes = defaultCatcodes) {
+                       defcmd = c("\\newcommand", "\\renewcommand",
+                                  "\\providecommand", "\\def", "\\let"),
+                       defenv = c("\\newenvironment",
+                                  "\\renewenvironment"),
+                       catcodes = defaultCatcodes,
+                       recover = FALSE) {
 
   text <- paste(text, collapse="\n")
+
+  keywords <- c(as.character(verb), as.character(defcmd),
+                as.character(defenv))
+  keywordtype <- rep(1:3, c(length(verb), length(defcmd),
+                            length(defenv)))
   stopifnot(all(nchar(catcodes$char, "chars") == 1))
   codepoint <- utf8ToInt(paste0(catcodes$char, collapse = ""))
   catcode <- as.integer(catcodes$catcode)
+  recover <- as.logical(recover)
+  if (length(recover) != 1 || is.na(recover))
+    stop("'recover' must be TRUE or FALSE")
   if (!(all(catcode %in% 0:15)))
     stop("catcodes must be in the range 0 to 15")
   if (length(codepoint) != length(catcode))
     stop("catcodes must have one char per catcode")
   .External(C_parseLatex, text, as.logical(verbose),
-            as.character(verbatim), as.character(verb),
-            codepoint, catcode)
-
+            as.character(verbatim), keywords,
+            keywordtype, codepoint, catcode,
+            recover)
 }
 
 #' The default "catcodes" used by [parseLatex].
@@ -176,6 +201,7 @@ deparseLatex <- function(x, dropBraces = FALSE)
                          "\\end{", envName(a), "}"),
                        MATH = c("$", Recall(a), "$"), # \( and \) parse as MACRO
                        DISPLAYMATH = c("$$", Recall(a), "$$"),
+                       ERROR = c(">>>", Recall(a), "<<<"),
                        NULL = stop("Internal error, no tag", domain = NA)
                 ))
     lastTag <- tag

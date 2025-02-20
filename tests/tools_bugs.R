@@ -33,4 +33,15 @@ parseLatex("\\newenvironment{bea}{\\begin{eqnarray*}}{\\end{eqnarray*}}")
 parseLatex("\\newcommand{\\bea}{\\begin{eqnarray*}}")
 parseLatex("\\def\\bea{\\begin{eqnarray*}}")
 
+# 7. Syntax error in tools
+parseLatex("$a$$b$")
 
+# 8. Syntax error in tools
+
+parseLatex("\\let\\bea{\\begin{eqnarray*}}")
+
+# 9.  Accepted in tools
+
+stopifnot(inherits(
+  try(parseLatex("\\Sexpr }")),
+  "try-error"))

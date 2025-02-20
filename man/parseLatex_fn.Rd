@@ -14,7 +14,11 @@ parseLatex(
   verbose = FALSE,
   verbatim = c("verbatim", "verbatim*", "Sinput", "Soutput"),
   verb = "\\\\Sexpr",
-  catcodes = defaultCatcodes
+  defcmd = c("\\\\newcommand", "\\\\renewcommand", "\\\\providecommand", "\\\\def",
+    "\\\\let"),
+  defenv = c("\\\\newenvironment", "\\\\renewenvironment"),
+  catcodes = defaultCatcodes,
+  recover = FALSE
 )
 
 \method{print}{LaTeX2item}(x, ...)
@@ -28,10 +32,18 @@ parseLatex(
 
 \item{verbatim}{A character vector containing the names of \LaTeX environments holding verbatim text.}
 
-\item{verb}{A character vector containing LaTeX macros that should be assumed to hold verbatim text.}
+\item{verb}{A character vector containing LaTeX macros that
+should be assumed to hold verbatim text.}
+
+\item{defcmd, defenv}{Character vectors of macros that
+are assumed to define new macro commands or environments
+respectively.}
 
 \item{catcodes}{A list or dataframe holding LaTeX "catcodes",
 such as \link{defaultCatcodes}.}
+
+\item{recover}{If \code{TRUE}, convert errors to warnings and
+continue parsing.  See Details below.}
 
 \item{x}{Object to work on.}
 
@@ -76,6 +88,13 @@ Windows),
 character (catcode 15) if its code point is less than 32,
 \item as "other" (catcode 12) otherwise.
 }
+
+When \code{recover = TRUE}, the parser will mark each error
+in the output, and attempt to continue parsing.  This
+may lead to a cascade of errors, but will sometimes
+help in locating the first error.  The section of text
+related to the error will be marked as an item with
+tag \code{ERROR}.
 }
 \examples{
 parsed <- parseLatex(r"(fran\c{c}ais)")
